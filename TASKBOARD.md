@@ -18,12 +18,18 @@ Set up project foundation with proper TypeScript, database, auth, and basic UI s
 - [x] Shared types package (@discord-clone/shared)
 - [x] Integration test: Both services running successfully
 
+#### ✅ Done (Sprint 1 Extensions)
+- [x] Auth system (register/login/JWT)
+- [x] JWT middleware for protected routes
+- [x] Password hashing with bcrypt
+- [x] Auth endpoints tested and working
+
 #### 🔨 In Progress  
-- [ ] Auth system (register/login/JWT)
+- [ ] Basic UI shell (layout components)
 
 #### 📅 Todo (Current Sprint - Foundation COMPLETE!)
-- [ ] Basic UI shell (layout components)
 - [ ] Integration test: Auth flow E2E
+- [ ] Frontend auth forms (login/register)
 
 #### 🔮 Future Sprints
 **Sprint 2: Core Chat**
