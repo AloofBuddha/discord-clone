@@ -1,0 +1,12 @@
+/* Component-specific styles */
+.discord-sidebar {
+  @apply bg-gray-800 text-gray-100;
+}
+
+.discord-channel {
+  @apply hover:bg-gray-700 px-2 py-1 rounded cursor-pointer transition-colors;
+}
+
+.discord-message {
+  @apply border-b border-gray-700 p-4;
+}
