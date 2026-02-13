@@ -20,7 +20,7 @@
     "zustand": "^4.4.7",
     "clsx": "^2.0.0",
     "lucide-react": "^0.295.0",
-    "@discord-clone/shared": "workspace:*"
+    "@discord-clone/shared": "file:../shared"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
