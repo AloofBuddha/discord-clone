@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String   // bcrypt hashed
+  avatar    String?
+  status    UserStatus @default(OFFLINE)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  ownedServers     Server[] @relation("ServerOwner")
+  serverMemberships ServerMember[]
+  messages         Message[]
+  dmChannelMembers DMChannelMember[]
+
+  @@map("users")
+}
+
+model Server {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  icon        String?
+  ownerId     String   @map("owner_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  owner    User           @relation("ServerOwner", fields: [ownerId], references: [id])
+  members  ServerMember[]
+  channels Channel[]
+
+  @@map("servers")
+}
+
+model ServerMember {
+  id       String     @id @default(cuid())
+  userId   String     @map("user_id")
+  serverId String     @map("server_id")
+  role     MemberRole @default(MEMBER)
+  joinedAt DateTime   @default(now()) @map("joined_at")
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id])
+  server Server @relation(fields: [serverId], references: [id])
+
+  @@unique([userId, serverId])
+  @@map("server_members")
+}
+
+model Channel {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  type        ChannelType @default(TEXT)
+  serverId    String      @map("server_id")
+  position    Int         @default(0)
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  server   Server    @relation(fields: [serverId], references: [id])
+  messages Message[]
+
+  @@map("channels")
+}
+
+model DMChannel {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  members  DMChannelMember[]
+  messages Message[]
+
+  @@map("dm_channels")
+}
+
+model DMChannelMember {
+  id          String @id @default(cuid())
+  userId      String @map("user_id")
+  dmChannelId String @map("dm_channel_id")
+
+  // Relations
+  user      User      @relation(fields: [userId], references: [id])
+  dmChannel DMChannel @relation(fields: [dmChannelId], references: [id])
+
+  @@unique([userId, dmChannelId])
+  @@map("dm_channel_members")
+}
+
+model Message {
+  id        String      @id @default(cuid())
+  content   String
+  authorId  String      @map("author_id")
+  channelId String?     @map("channel_id")
+  dmChannelId String?   @map("dm_channel_id")
+  type      MessageType @default(USER)
+  editedAt  DateTime?   @map("edited_at")
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  author    User       @relation(fields: [authorId], references: [id])
+  channel   Channel?   @relation(fields: [channelId], references: [id])
+  dmChannel DMChannel? @relation(fields: [dmChannelId], references: [id])
+
+  @@map("messages")
+}
+
+// Enums
+enum UserStatus {
+  ONLINE
+  IDLE
+  DND
+  OFFLINE
+}
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum ChannelType {
+  TEXT
+  VOICE
+}
+
+enum MessageType {
+  USER
+  SYSTEM
+}

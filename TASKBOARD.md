@@ -10,16 +10,18 @@ Set up project foundation with proper TypeScript, database, auth, and basic UI s
 #### ✅ Done
 - [x] Create GitHub repo
 - [x] Set up task board
+- [x] Project scaffolding (monorepo structure)
+- [x] Docker Compose setup (PostgreSQL + Redis running)
+- [x] Prisma schema design (User/Server/Channel/Message entities)
+- [x] Backend foundation (Express + Socket.io + TypeScript)
+- [x] Frontend foundation (React + Vite + TypeScript)
+- [x] Shared types package (@discord-clone/shared)
+- [x] Integration test: Both services running successfully
 
 #### 🔨 In Progress  
-- [ ] Project scaffolding (monorepo structure)
-
-#### 📅 Todo (Current Sprint)
-- [ ] Docker Compose setup (PostgreSQL + dev env)
-- [ ] Prisma schema design
-- [ ] Backend foundation (Express + TypeScript)
-- [ ] Frontend foundation (React + Vite + TypeScript)
 - [ ] Auth system (register/login/JWT)
+
+#### 📅 Todo (Current Sprint - Foundation COMPLETE!)
 - [ ] Basic UI shell (layout components)
 - [ ] Integration test: Auth flow E2E
 
