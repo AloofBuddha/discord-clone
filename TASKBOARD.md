@@ -24,12 +24,20 @@ Set up project foundation with proper TypeScript, database, auth, and basic UI s
 - [x] Password hashing with bcrypt
 - [x] Auth endpoints tested and working
 
-#### 🔨 In Progress  
-- [ ] Basic UI shell (layout components)
+#### ✅ Done (Basic UI Shell Complete!)
+- [x] Basic UI shell (layout components)
+- [x] Frontend auth forms (login/register)
+- [x] MainLayout with Discord-like sidebar + content
+- [x] AuthPage with login/register switching
+- [x] ChatInterface with message display + input
+- [x] AuthProvider integration and routing
+- [x] Both servers running and healthy
 
-#### 📅 Todo (Current Sprint - Foundation COMPLETE!)
+#### 🔨 In Progress
 - [ ] Integration test: Auth flow E2E
-- [ ] Frontend auth forms (login/register)
+
+#### 📅 Todo (Current Sprint - Foundation ALMOST COMPLETE!)
+- [ ] Visual testing and polish
 
 #### 🔮 Future Sprints
 **Sprint 2: Core Chat**
