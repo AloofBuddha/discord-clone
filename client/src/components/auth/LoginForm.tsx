@@ -27,63 +27,66 @@ export const LoginForm = ({ onSwitchToRegister }: LoginFormProps) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold text-white text-center mb-6">
-        Welcome back!
-      </h2>
-      <p className="text-gray-400 text-center mb-6">
-        We're so excited to see you again!
-      </p>
-
+    <div className="max-w-md mx-auto bg-[#36393f] rounded-lg shadow-2xl p-8">
       {error && (
-        <div className="bg-red-600 text-white p-3 rounded mb-4 text-sm">
+        <div className="bg-[#f04747] text-white p-3 rounded-md mb-6 text-sm flex items-center">
+          <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-400 text-sm font-medium mb-2">
-            Email
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label className="block text-[#b9bbbe] text-xs font-bold uppercase tracking-wide mb-2">
+            Email or Phone Number <span className="text-[#f04747]">*</span>
           </label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter your email"
+            className="w-full px-3 py-2.5 bg-[#202225] border border-[#202225] rounded-md text-[#dcddde] placeholder-[#72767d] focus:outline-none focus:border-[#00b0f4] transition-colors text-base"
+            placeholder=""
             disabled={loading}
           />
         </div>
 
-        <div className="mb-6">
-          <label className="block text-gray-400 text-sm font-medium mb-2">
-            Password
+        <div>
+          <label className="block text-[#b9bbbe] text-xs font-bold uppercase tracking-wide mb-2">
+            Password <span className="text-[#f04747]">*</span>
           </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter your password"
+            className="w-full px-3 py-2.5 bg-[#202225] border border-[#202225] rounded-md text-[#dcddde] placeholder-[#72767d] focus:outline-none focus:border-[#00b0f4] transition-colors text-base"
+            placeholder=""
             disabled={loading}
           />
         </div>
 
         <button
+          type="button"
+          className="text-[#00b0f4] text-sm hover:underline"
+        >
+          Forgot your password?
+        </button>
+
+        <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
+          className="w-full bg-[#5865f2] hover:bg-[#4752c4] disabled:bg-[#4752c4] disabled:opacity-50 text-white font-medium py-3 px-4 rounded-md transition-colors text-base"
         >
           {loading ? 'Logging in...' : 'Log In'}
         </button>
       </form>
 
-      <p className="text-gray-400 text-sm text-center mt-4">
+      <p className="text-[#72767d] text-sm mt-6">
         Need an account?{' '}
         <button
           onClick={onSwitchToRegister}
-          className="text-blue-400 hover:underline"
+          className="text-[#00b0f4] hover:underline"
         >
           Register
         </button>
